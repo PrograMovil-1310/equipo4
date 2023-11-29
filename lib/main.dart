@@ -1,20 +1,21 @@
+import 'package:flutter_proyecto/locator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_proyecto/pages/home.dart';
 
 void main() {
-  runApp(const MainApp());
+  //setupServices();
+  runApp(MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      home: HomePage(),
     );
   }
 }
