@@ -1,21 +1,17 @@
-import 'package:flutter_proyecto/locator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_proyecto/pages/home.dart';
+import 'package:equipo4/src/pages/rutas/rutas.dart';
 
-void main() {
-  //setupServices();
-  runApp(MyApp());
-}
+void main() => runApp(const MainApp());
 
-class MyApp extends StatelessWidget {
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: HomePage(),
+      debugShowCheckedModeBanner: false,
+      routes: getRoutes(),
+      initialRoute: '/home',
     );
   }
 }
