@@ -13,10 +13,10 @@ class Home extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/logo.jpg',
-              height: 200.0,
-              width: 200.0,
+            Image.network(
+              'https://static.wixstatic.com/media/e1f912_3bf192afe7d1409cb0590026b947242d~mv2.jpg/v1/fill/w_120,h_120,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/logo.jpg',
+              height: 250.0,
+              width: 250.0,
               fit: BoxFit.contain,
             ),
             SizedBox(height: 16.0),
@@ -67,7 +67,9 @@ class MainDrawer extends StatelessWidget {
             accountName: Text('MENU QR INVENTORY'),
             accountEmail: Text('qrinventory@gmail.com'),
             currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage('assets/logo.jpg'),
+              backgroundImage: NetworkImage(
+                'https://static.wixstatic.com/media/e1f912_3bf192afe7d1409cb0590026b947242d~mv2.jpg/v1/fill/w_120,h_120,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/logo.jpg',
+              ),
             ),
             decoration: BoxDecoration(
               color: Color.fromARGB(255, 167, 20, 20),
@@ -83,12 +85,8 @@ class MainDrawer extends StatelessWidget {
               onTap: () => Navigator.pushNamed(context, '/scanner')),
           DrawerItem(
               icon: Icons.inventory,
-              text: 'Inventario',
-              onTap: () => Navigator.pushNamed(context, '/inventario')),
-          DrawerItem(
-              icon: Icons.draw,
-              text: 'Editar',
-              onTap: () => Navigator.pushNamed(context, '/editar')),
+              text: 'Documentos',
+              onTap: () => Navigator.pushNamed(context, '/documentos')),
           DrawerItem(
               icon: Icons.info,
               text: 'Acerca de',
