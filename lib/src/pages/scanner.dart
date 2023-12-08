@@ -74,6 +74,7 @@ class _MainScreenState extends State<Scanner> with WidgetsBindingObserver {
             Scaffold(
               appBar: AppBar(
                 title: const Text('ESCANEO DE TEXTO'),
+                backgroundColor: Color.fromARGB(255, 167, 20, 20),
               ),
               backgroundColor: _isPermissionGranted ? Colors.transparent : null,
               body: _isPermissionGranted
@@ -175,7 +176,7 @@ class _MainScreenState extends State<Scanner> with WidgetsBindingObserver {
 
       Navigator.of(context).push(MaterialPageRoute(
         builder: (BuildContext context) =>
-            Documentos(text: recognizedText.text),
+            ResultScreen(text: recognizedText.text),
       ));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(

@@ -10,8 +10,8 @@ Map<String, WidgetBuilder> getRoutes() {
   return <String, WidgetBuilder>{
     '/login': (context) => LoginScreen(),
     '/home': (context) => Home(),
-        '/scanner': (context) => Scanner(),
-        '/documentos': (context) => Documentos(), 
+        '/scanner': (context) => Scanner(),       
+         '/documentos': (context) =>  ResultScreen(text: '',), 
         '/acerca de': (context) => Acerca(),
   };
 }
