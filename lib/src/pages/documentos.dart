@@ -11,6 +11,8 @@ class ResultScreen extends StatefulWidget {
   _ResultScreenState createState() => _ResultScreenState();
 }
 
+int _idCounter = 0;
+
 class _ResultScreenState extends State<ResultScreen> {
   // Lista para almacenar los resultados con un ID único para cada entrada.
   List<Map<String, dynamic>> results = [];
@@ -20,8 +22,7 @@ class _ResultScreenState extends State<ResultScreen> {
     super.initState();
     // Añade el resultado inicial a la lista con un ID generado.
     results.add({
-      "id":
-          UniqueKey().toString(), // Usamos UniqueKey para generar un ID único.
+      "id": _idCounter++, // Incrementa el contador de ID.
       "title": "Scan 1",
       "text": widget.text
     });
@@ -81,9 +82,7 @@ class _ResultScreenState extends State<ResultScreen> {
           // Lógica para agregar nuevos escaneos.
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    Scanner()), 
+            MaterialPageRoute(builder: (context) => Scanner()),
           );
         },
         child: const Icon(Icons.add),
@@ -114,7 +113,8 @@ class _ResultScreenState extends State<ResultScreen> {
               children: <Widget>[
                 IconButton(
                   icon: const Icon(Icons.edit),
-                  onPressed: () => _editTitle(index), // Llama al método de edición de título.
+                  onPressed: () => _editTitle(
+                      index), // Llama al método de edición de título.
                 ),
               ],
             )
