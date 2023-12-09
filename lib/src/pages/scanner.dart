@@ -169,16 +169,15 @@ class _MainScreenState extends State<Scanner> with WidgetsBindingObserver {
   }
 
   Future<void> _scanImage() async {
-    // ... [Mantener la lógica existente de _scanImage] ...
     if (_cameraController == null) return;
 
-    final navigator = Navigator.of(context);
     try {
       final pictureFile = await _cameraController!.takePicture();
       final file = File(pictureFile.path);
       final inputImage = InputImage.fromFile(file);
       final recognizedText = await textRecognizer.processImage(inputImage);
 
+      // Navegar a ResultScreen con el texto reconocido.
       Navigator.of(context).push(MaterialPageRoute(
         builder: (BuildContext context) =>
             ResultScreen(text: recognizedText.text),
@@ -188,7 +187,7 @@ class _MainScreenState extends State<Scanner> with WidgetsBindingObserver {
         const SnackBar(
           content: Text('Ocurre un ERROR en el escaneo del Texto'),
         ),
-      ); // ... [Manejo de errores] ...
+      );
     }
   }
 }
