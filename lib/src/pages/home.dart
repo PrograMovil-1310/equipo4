@@ -23,7 +23,7 @@ class Home extends StatelessWidget {
             Text(
               '¡Bienvenido a ScanDoc!',
               style: TextStyle(
-                fontSize: 24.0,
+                fontSize: 25.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -33,7 +33,7 @@ class Home extends StatelessWidget {
               child: Text(
                 'Capture, Convierta, Comparta – ScanDoc es su asistente digital',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16.0),
+                style: TextStyle(fontSize: 18.0),
               ),
             ),
           ],
