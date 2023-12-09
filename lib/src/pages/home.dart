@@ -95,7 +95,7 @@ class MainDrawer extends StatelessWidget {
             leading: Icon(Icons.logout),
             title: Text('Salir'),
             onTap: () {
-              //SystemNavigator.pop();
+              SystemNavigator.pop();
             },
           ),
         ],
