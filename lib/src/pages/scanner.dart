@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:equipo4/src/pages/documentos.dart';
+import 'package:equipo4/src/pages/home.dart';
 
 class Scanner extends StatefulWidget {
   const Scanner({super.key});
@@ -76,6 +77,7 @@ class _MainScreenState extends State<Scanner> with WidgetsBindingObserver {
                 title: const Text('ESCANEO DE TEXTO'),
                 backgroundColor: Color.fromARGB(255, 238, 71, 0),
               ),
+              drawer: MainDrawer(),
               backgroundColor: _isPermissionGranted ? Colors.transparent : null,
               body: _isPermissionGranted
                   ? Column(
@@ -89,6 +91,9 @@ class _MainScreenState extends State<Scanner> with WidgetsBindingObserver {
                             child: ElevatedButton(
                               onPressed: _scanImage,
                               child: const Text('Escanear Texto'),
+                              style: ElevatedButton.styleFrom(
+                                primary: Color.fromARGB(255, 238, 186, 0),
+                              ),
                             ),
                           ),
                         ),

@@ -62,7 +62,7 @@ class LoginScreen extends StatelessWidget {
               children: <Widget>[
                 Checkbox(
                   value: true,
-                  activeColor: Colors.yellow[700],
+                  activeColor: Color.fromARGB(255, 226, 234, 0),
                   onChanged: (bool? value) {
                     // Handle remember me checkbox
                   },

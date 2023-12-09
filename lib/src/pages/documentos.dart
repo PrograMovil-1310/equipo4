@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:equipo4/src/pages/home.dart';
+import 'package:equipo4/src/pages/scanner.dart';
 
 class ResultScreen extends StatefulWidget {
   final String text;
@@ -73,6 +74,7 @@ class _ResultScreenState extends State<ResultScreen> {
         title: const Text('Textos Escaneados'),
         backgroundColor: Color.fromARGB(255, 238, 71, 0),
       ),
+      drawer: MainDrawer(),
       body: _buildResultsList(), // Construye la lista de resultados.
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -81,7 +83,7 @@ class _ResultScreenState extends State<ResultScreen> {
             context,
             MaterialPageRoute(
                 builder: (context) =>
-                    Home()), // Asegúrate de que 'Home()' sea el lugar correcto para escanear más texto.
+                    Scanner()), 
           );
         },
         child: const Icon(Icons.add),
@@ -112,8 +114,7 @@ class _ResultScreenState extends State<ResultScreen> {
               children: <Widget>[
                 IconButton(
                   icon: const Icon(Icons.edit),
-                  onPressed: () => _editTitle(
-                      index), // Llama al método de edición de título.
+                  onPressed: () => _editTitle(index), // Llama al método de edición de título.
                 ),
               ],
             )
