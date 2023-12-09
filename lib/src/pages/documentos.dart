@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:equipo4/src/pages/home.dart';
 import 'package:equipo4/src/pages/scanner.dart';
+import 'package:equipo4/domain/entities/respuesta.dart';
+import 'package:equipo4/helper/answer.dart';
 
 class ResultScreen extends StatefulWidget {
   final String text;
@@ -14,36 +16,41 @@ class ResultScreen extends StatefulWidget {
 int _idCounter = 0;
 
 class _ResultScreenState extends State<ResultScreen> {
-  // Lista para almacenar los resultados con un ID único para cada entrada.
   List<Map<String, dynamic>> results = [];
+  final ApiAnswer _apiAnswer = ApiAnswer();
 
   @override
   void initState() {
     super.initState();
-    // Añade el resultado inicial a la lista con un ID generado.
-    results.add({
-      "id": _idCounter++, // Incrementa el contador de ID.
-      "title": "Scan 1",
-      "text": widget.text
+    _addResult(widget.text);
+  }
+
+  Future<void> _addResult(String text) async {
+    var newResult = Respuesta(
+      id: _idCounter.toString(),
+      titulo: "Scan 1",
+      descripcion: text,
+    );
+    await _apiAnswer.postRespuesta(newResult);
+    setState(() {
+      results.add(newResult.toJson());
+      _idCounter++;
     });
   }
 
-  // Método para editar el título de un resultado.
   Future<void> _editTitle(int index) async {
-    // Controlador para el campo de texto del diálogo de edición.
     TextEditingController _titleController = TextEditingController();
-    _titleController.text = results[index]["title"] ?? "";
+    _titleController.text = results[index]["titulo"] ?? "";
 
-    // Mostrar el diálogo de edición.
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Editar Titulo'),
+          title: const Text('Editar Título'),
           content: TextField(
             controller: _titleController,
-            decoration: const InputDecoration(hintText: 'Ingrese nuevo Titulo'),
+            decoration: const InputDecoration(hintText: 'Ingrese nuevo Título'),
           ),
           actions: <Widget>[
             TextButton(
@@ -54,14 +61,50 @@ class _ResultScreenState extends State<ResultScreen> {
             ),
             TextButton(
               child: const Text('Guardar'),
-              onPressed: () {
-                // Actualizar el título con el nuevo valor.
+              onPressed: () async {
+                var updatedResult = Respuesta(
+                  id: results[index]["id"],
+                  titulo: _titleController.text,
+                  descripcion: results[index]["descripcion"],
+                );
+                await _apiAnswer.postRespuesta(updatedResult);
                 setState(() {
-                  results[index]["title"] = _titleController.text;
+                  results[index] = updatedResult.toJson();
                 });
                 Navigator.of(context).pop();
               },
             ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildResultsList() {
+    return ListView.builder(
+      itemCount: results.length,
+      itemBuilder: (context, index) {
+        var result = results[index];
+        return ExpansionTile(
+          title: Text(result["titulo"] ?? "Untitled"),
+          subtitle: Text(
+            result["descripcion"]?.substring(0, 30) ?? "",
+            overflow: TextOverflow.ellipsis,
+          ),
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(result["descripcion"] ?? ""),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                IconButton(
+                  icon: const Icon(Icons.edit),
+                  onPressed: () => _editTitle(index),
+                ),
+              ],
+            )
           ],
         );
       },
@@ -76,10 +119,9 @@ class _ResultScreenState extends State<ResultScreen> {
         backgroundColor: Color.fromARGB(255, 238, 71, 0),
       ),
       drawer: MainDrawer(),
-      body: _buildResultsList(), // Construye la lista de resultados.
+      body: _buildResultsList(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Lógica para agregar nuevos escaneos.
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => Scanner()),
@@ -88,39 +130,6 @@ class _ResultScreenState extends State<ResultScreen> {
         child: const Icon(Icons.add),
         backgroundColor: Color.fromARGB(255, 238, 186, 0),
       ),
-    );
-  }
-
-  // Método para construir la lista de resultados con la capacidad de expandir y ver el texto completo.
-  Widget _buildResultsList() {
-    return ListView.builder(
-      itemCount: results.length,
-      itemBuilder: (context, index) {
-        var result = results[index];
-        return ExpansionTile(
-          title: Text(result["title"] ?? "Untitled"),
-          subtitle: Text(
-            result["text"]?.substring(0, 30) ?? "",
-            overflow: TextOverflow.ellipsis,
-          ),
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(result["text"] ?? ""),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.edit),
-                  onPressed: () => _editTitle(
-                      index), // Llama al método de edición de título.
-                ),
-              ],
-            )
-          ],
-        );
-      },
     );
   }
 }
