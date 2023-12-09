@@ -71,7 +71,7 @@ class _ResultScreenState extends State<ResultScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Textos Escaneados'),
-        backgroundColor: Color.fromARGB(255, 167, 20, 20),
+        backgroundColor: Color.fromARGB(255, 238, 71, 0),
       ),
       body: _buildResultsList(), // Construye la lista de resultados.
       floatingActionButton: FloatingActionButton(
@@ -85,6 +85,7 @@ class _ResultScreenState extends State<ResultScreen> {
           );
         },
         child: const Icon(Icons.add),
+        backgroundColor: Color.fromARGB(255, 238, 186, 0),
       ),
     );
   }

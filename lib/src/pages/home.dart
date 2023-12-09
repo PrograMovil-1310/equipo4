@@ -6,22 +6,22 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('QR Inventory'),
-          backgroundColor: Color.fromARGB(255, 167, 20, 20)),
+          title: Text('SCANDOC'),
+          backgroundColor: Color.fromARGB(255, 238, 71, 0)),
       drawer: MainDrawer(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.network(
-              'https://static.wixstatic.com/media/e1f912_3bf192afe7d1409cb0590026b947242d~mv2.jpg/v1/fill/w_120,h_120,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/logo.jpg',
+              'https://icones.pro/wp-content/uploads/2021/06/icone-fichier-document-orange.png',
               height: 250.0,
               width: 250.0,
               fit: BoxFit.contain,
             ),
             SizedBox(height: 16.0),
             Text(
-              '¡Bienvenido a QR Inventory!',
+              '¡Bienvenido a ScanDoc!',
               style: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
@@ -31,7 +31,7 @@ class Home extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Text(
-                'Gestiona tu inventario con facilidad y rapidez, todo a través de un simple escaneo con QR Inventory',
+                'Capture, Convierta, Comparta – ScanDoc es su asistente digital',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16.0),
               ),
@@ -64,15 +64,15 @@ class MainDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           UserAccountsDrawerHeader(
-            accountName: Text('MENU QR INVENTORY'),
-            accountEmail: Text('qrinventory@gmail.com'),
+            accountName: Text('MENU SCANDOC'),
+            accountEmail: Text('scandoc@gmail.com'),
             currentAccountPicture: CircleAvatar(
               backgroundImage: NetworkImage(
-                'https://static.wixstatic.com/media/e1f912_3bf192afe7d1409cb0590026b947242d~mv2.jpg/v1/fill/w_120,h_120,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/logo.jpg',
+                'https://e.rpp-noticias.io/xlarge/2023/11/13/141114_1501572.webp',
               ),
             ),
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 167, 20, 20),
+              color: Color.fromARGB(255, 238, 71, 0),
             ),
           ),
           DrawerItem(
@@ -80,11 +80,11 @@ class MainDrawer extends StatelessWidget {
               text: 'Inicio',
               onTap: () => Navigator.pushNamed(context, '/home')),
           DrawerItem(
-              icon: Icons.qr_code_scanner,
+              icon: Icons.document_scanner,
               text: 'Scanner',
               onTap: () => Navigator.pushNamed(context, '/scanner')),
           DrawerItem(
-              icon: Icons.inventory,
+              icon: Icons.folder_open,
               text: 'Documentos',
               onTap: () => Navigator.pushNamed(context, '/documentos')),
           DrawerItem(
@@ -95,7 +95,7 @@ class MainDrawer extends StatelessWidget {
             leading: Icon(Icons.logout),
             title: Text('Salir'),
             onTap: () {
-              SystemNavigator.pop();
+              //SystemNavigator.pop();
             },
           ),
         ],

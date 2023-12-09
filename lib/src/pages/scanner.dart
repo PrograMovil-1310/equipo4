@@ -74,7 +74,7 @@ class _MainScreenState extends State<Scanner> with WidgetsBindingObserver {
             Scaffold(
               appBar: AppBar(
                 title: const Text('ESCANEO DE TEXTO'),
-                backgroundColor: Color.fromARGB(255, 167, 20, 20),
+                backgroundColor: Color.fromARGB(255, 238, 71, 0),
               ),
               backgroundColor: _isPermissionGranted ? Colors.transparent : null,
               body: _isPermissionGranted
